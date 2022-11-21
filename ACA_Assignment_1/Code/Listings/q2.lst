@@ -1,0 +1,84 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000         ;Implement a 16-bit addition. Assume data is present in 
+                       code memory. 
+    2 00000000                 AREA             ADDITION_16BIT, CODE, READONLY
+    3 00000000                 ENTRY
+    4 00000000         
+    5 00000000         MAIN
+    6 00000000 E59F1010        LDR              R1, VALUE1  ;LOAD THE FIRST NUM
+                                                            BER
+    7 00000004 E59F2010        LDR              R2, VALUE2  ;LOAD THE SECOND NU
+                                                            MBER
+    8 00000008 E0811002        ADD              R1, R1, R2  ;ADD R1 AND R2 AND 
+                                                            STORE IN R1 (x = x 
+                                                            + y)
+    9 0000000C E59F300C        LDR              R3, RESULT  ;LOAD THE ADDRESS 
+   10 00000010 E5831000        STR              R1,[R3]     ;STORE THE RESULT
+   11 00000014 E1A00000        NOP
+   12 00000018 0000C123 
+                       VALUE1  DCD              &C123       ;FIRST VALUE
+   13 0000001C                 ALIGN
+   14 0000001C 000002AA 
+                       VALUE2  DCD              &02AA       ;SECOND VALUE 
+   15 00000020                 ALIGN
+   16 00000020 40000000 
+                       RESULT  DCD              &40000000   ;storage for result
+                                                            
+   17 00000024                 END
+Command Line: --debug --xref --diag_suppress=9931 --apcs=interwork --depend=.\o
+bjects\q2.d -o.\objects\q2.o -IC:\Keil_v5\ARM\RV31\INC -IC:\Keil_v5\ARM\CMSIS\I
+nclude -IC:\Keil_v5\ARM\INC\Philips --predefine="__EVAL SETA 1" --predefine="__
+UVISION_VERSION SETA 529" --list=.\listings\q2.lst Q2.asm
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+ADDITION_16BIT 00000000
+
+Symbol: ADDITION_16BIT
+   Definitions
+      At line 2 in file Q2.asm
+   Uses
+      None
+Comment: ADDITION_16BIT unused
+MAIN 00000000
+
+Symbol: MAIN
+   Definitions
+      At line 5 in file Q2.asm
+   Uses
+      None
+Comment: MAIN unused
+RESULT 00000020
+
+Symbol: RESULT
+   Definitions
+      At line 16 in file Q2.asm
+   Uses
+      At line 9 in file Q2.asm
+Comment: RESULT used once
+VALUE1 00000018
+
+Symbol: VALUE1
+   Definitions
+      At line 12 in file Q2.asm
+   Uses
+      At line 6 in file Q2.asm
+Comment: VALUE1 used once
+VALUE2 0000001C
+
+Symbol: VALUE2
+   Definitions
+      At line 14 in file Q2.asm
+   Uses
+      At line 7 in file Q2.asm
+Comment: VALUE2 used once
+5 symbols
+337 symbols in table

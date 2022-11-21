@@ -1,0 +1,101 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000         ;Convert a given number from 0x4000 0000 hex value to AS
+                       CII. 
+    2 00000000                 AREA             HEXTOASCII, CODE, READONLY
+    3 00000000                 ENTRY
+    4 00000000         main
+    5 00000000 E3A00101        LDR              R0,=0X40000000 ;32-BIT NUMBER 
+    6 00000004 E59F4034        LDR              R4,=0x40000100 ;ADDRESS TO STOR
+                                                            E THE ASCII VALUE
+    7 00000008 E5901000        LDR              R1,[R0]     ;LOAD THE CONTENTS 
+                                                            IN R0 TO R1
+    8 0000000C E3A02008        LDR              R2,=8       ; NO. OF ITERATIONS
+                                                            
+    9 00000010         
+   10 00000010         CONVERT
+   11 00000010 E3520000        CMP              R2,#0       ;CHECK IF COUNT IS 
+                                                            ZERO
+   12 00000014 0A000008        BEQ              STOP        ;IF EQUAL BRANCH TO
+                                                             STOP
+   13 00000018 E201300F        AND              R3,R1,#0XF  ; ONLY GET THE LAST
+                                                             NIBBLE
+   14 0000001C E353000A        CMP              R3,#0XA     ;CHECK IF THE NUMBE
+                                                            R IS LESS THAN 10
+   15 00000020 BA000000        BLT              SKIP        ;IF LESS THE BRANCH
+                                                             TO SKIP
+   16 00000024 E2833007        ADD              R3,R3,#"A"-"0"-0XA 
+                                                            ;FINDING THE OFFSET
+                                                            
+   17 00000028         SKIP
+   18 00000028 E2833030        ADD              R3,R3,#"0"  ;ADD THE ASCII VALU
+                                                            E OF '0' TO THE DIG
+                                                            IT
+   19 0000002C E4C43001        STRB             R3,[R4],#1  ; STORE THE RESULT 
+                                                            IN DESTINATION ADDR
+                                                            ESS
+   20 00000030 E1A010A1        MOV              R1,R1,LSR #1 ; RIGHT-SHIFT TO F
+                                                            IND THE NEXT DIGIT
+   21 00000034 E2422001        SUB              R2,#1       ;DECREMENT
+   22 00000038 EAFFFFF4        B                CONVERT     ;ITERATIVE PROCESS
+   23 0000003C EAFFFFFE 
+                       STOP    B                STOP        ;INFINITE LOOP
+   24 00000040                 END                          ;END OF EXECUTION
+              40000100 
+Command Line: --debug --xref --diag_suppress=9931 --apcs=interwork --depend=.\o
+bjects\q9.d -o.\objects\q9.o -IC:\Keil_v5\ARM\RV31\INC -IC:\Keil_v5\ARM\CMSIS\I
+nclude -IC:\Keil_v5\ARM\INC\Philips --predefine="__EVAL SETA 1" --predefine="__
+UVISION_VERSION SETA 529" --list=.\listings\q9.lst Q9.asm
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+CONVERT 00000010
+
+Symbol: CONVERT
+   Definitions
+      At line 10 in file Q9.asm
+   Uses
+      At line 22 in file Q9.asm
+Comment: CONVERT used once
+HEXTOASCII 00000000
+
+Symbol: HEXTOASCII
+   Definitions
+      At line 2 in file Q9.asm
+   Uses
+      None
+Comment: HEXTOASCII unused
+SKIP 00000028
+
+Symbol: SKIP
+   Definitions
+      At line 17 in file Q9.asm
+   Uses
+      At line 15 in file Q9.asm
+Comment: SKIP used once
+STOP 0000003C
+
+Symbol: STOP
+   Definitions
+      At line 23 in file Q9.asm
+   Uses
+      At line 12 in file Q9.asm
+      At line 23 in file Q9.asm
+
+main 00000000
+
+Symbol: main
+   Definitions
+      At line 4 in file Q9.asm
+   Uses
+      None
+Comment: main unused
+5 symbols
+339 symbols in table

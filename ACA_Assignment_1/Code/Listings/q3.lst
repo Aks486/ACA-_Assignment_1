@@ -1,0 +1,125 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000         ;Find the factorial of a number.
+    2 00000000                 AREA             FACTORIAL, CODE, READONLY
+    3 00000000                 ENTRY
+    4 00000000         MAIN
+    5 00000000 E59F0024        LDR              R0,NUM      ;LOAD THE REGISTER 
+                                                            WITH THE VALUE
+    6 00000004 E3A01001        MOV              R1,#1
+    7 00000008         FACT
+    8 00000008 E3500001        CMP              R0,#1       ; CHECK IF R0 IS 1
+    9 0000000C 0A000003        BEQ              DONE        ;BRANCH TO DONE IF 
+                                                            EQUAL
+   10 00000010 E0020091        MUL              R2,R1,R0    ;MULTIPLY R1 AND R0
+                                                             AND STORE RESULT I
+                                                            N R2
+   11 00000014 E1A01002        MOV              R1,R2       ;MOVE THE VALUE FRO
+                                                            M R2 TO R1
+   12 00000018 E2400001        SUB              R0,R0,#1    ;SUBTRACT R0 WITH 1
+                                                             AND STORE IT BACK 
+                                                            TO R0
+   13 0000001C EAFFFFF9        B                FACT        ;KEEP IN LOOP TILL 
+                                                            FACTORIAL OF A NUMB
+                                                            ER IS FOUND
+   14 00000020 E59F4008 
+                       DONE    LDR              R4,=RESULT  ;LOAD THE ADDRESS
+   15 00000024 E5842000        STR              R2,[R4]     ;STORE THE RESULT
+   16 00000028 EAFFFFFE 
+                       STOP    B                STOP        ;INFINITE LOOP
+   17 0000002C 00000007 
+                       NUM     DCD              7           ; VALUE TO FIND THE
+                                                             FACTORIAL
+   18 00000030         
+   19 00000030 00000000        AREA             OUTPUT, DATA, READWRITE
+   20 00000000 00000000 
+                       RESULT  DCD              0           ;OUTPUT SAVED IN DA
+                                                            TA MEMORY
+   21 00000004                 END
+Command Line: --debug --xref --diag_suppress=9931 --apcs=interwork --depend=.\o
+bjects\q3.d -o.\objects\q3.o -IC:\Keil_v5\ARM\RV31\INC -IC:\Keil_v5\ARM\CMSIS\I
+nclude -IC:\Keil_v5\ARM\INC\Philips --predefine="__EVAL SETA 1" --predefine="__
+UVISION_VERSION SETA 529" --list=.\listings\q3.lst Q3.asm
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+DONE 00000020
+
+Symbol: DONE
+   Definitions
+      At line 14 in file Q3.asm
+   Uses
+      At line 9 in file Q3.asm
+Comment: DONE used once
+FACT 00000008
+
+Symbol: FACT
+   Definitions
+      At line 7 in file Q3.asm
+   Uses
+      At line 13 in file Q3.asm
+Comment: FACT used once
+FACTORIAL 00000000
+
+Symbol: FACTORIAL
+   Definitions
+      At line 2 in file Q3.asm
+   Uses
+      None
+Comment: FACTORIAL unused
+MAIN 00000000
+
+Symbol: MAIN
+   Definitions
+      At line 4 in file Q3.asm
+   Uses
+      None
+Comment: MAIN unused
+NUM 0000002C
+
+Symbol: NUM
+   Definitions
+      At line 17 in file Q3.asm
+   Uses
+      At line 5 in file Q3.asm
+Comment: NUM used once
+STOP 00000028
+
+Symbol: STOP
+   Definitions
+      At line 16 in file Q3.asm
+   Uses
+      At line 16 in file Q3.asm
+Comment: STOP used once
+6 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+OUTPUT 00000000
+
+Symbol: OUTPUT
+   Definitions
+      At line 19 in file Q3.asm
+   Uses
+      None
+Comment: OUTPUT unused
+RESULT 00000000
+
+Symbol: RESULT
+   Definitions
+      At line 20 in file Q3.asm
+   Uses
+      At line 14 in file Q3.asm
+Comment: RESULT used once
+2 symbols
+342 symbols in table

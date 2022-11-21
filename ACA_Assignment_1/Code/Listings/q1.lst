@@ -1,0 +1,92 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000         ;Implement a 32-bit addition. Assume data is present in 
+                       code memory. 
+    2 00000000                 AREA             ADDITION_32BIT, CODE, READONLY
+    3 00000000                 ENTRY
+    4 00000000         
+    5 00000000         MAIN
+    6 00000000 E59F0028        LDR              R0,=VALUE1  ;LOAD THE ADDRESS O
+                                                            F FIRST VALUE
+    7 00000004 E5901000        LDR              R1,[R0]     ;LOAD THE VALUE TO 
+                                                            THE REGISTER
+    8 00000008 E2800004        ADD              R0,R0,#0x4  ;ADJUST THE POINTER
+                                                            
+    9 0000000C E5902000        LDR              R2,[R0]     ;LOAD THE NEW VALUE
+                                                            
+   10 00000010 E0811002        ADD              R1,R1,R2    ;ADD AND STORE THE 
+                                                            RESULT IN R1
+   11 00000014 E59F0018        LDR              R0,=RESULT  ;LOAD THE ADDRESS T
+                                                            O STORE THE VALUE
+   12 00000018 E5903000        LDR              R3,[R0]
+   13 0000001C E5831000        STR              R1,[R3]     ;STORE THE VALUE
+   14 00000020 EF000011        SWI              &11         ;EXIT
+   15 00000024         
+   16 00000024 37E3C123 
+                       VALUE1  DCD              &37E3C123   ;SET THE FIRST VALU
+                                                            E
+   17 00000028 367402AA 
+                       VALUE2  DCD              &367402AA   ;SET THE SECOND VAL
+                                                            UE
+   18 0000002C 40000000 
+                       RESULT  DCD              &40000000   ;ADDRESS USED TO ST
+                                                            ORE RESULT
+   19 00000030                 END
+              00000000 
+              00000000 
+Command Line: --debug --xref --diag_suppress=9931 --apcs=interwork --depend=.\o
+bjects\q1.d -o.\objects\q1.o -IC:\Keil_v5\ARM\RV31\INC -IC:\Keil_v5\ARM\CMSIS\I
+nclude -IC:\Keil_v5\ARM\INC\Philips --predefine="__EVAL SETA 1" --predefine="__
+UVISION_VERSION SETA 529" --list=.\listings\q1.lst Q1.asm
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+ADDITION_32BIT 00000000
+
+Symbol: ADDITION_32BIT
+   Definitions
+      At line 2 in file Q1.asm
+   Uses
+      None
+Comment: ADDITION_32BIT unused
+MAIN 00000000
+
+Symbol: MAIN
+   Definitions
+      At line 5 in file Q1.asm
+   Uses
+      None
+Comment: MAIN unused
+RESULT 0000002C
+
+Symbol: RESULT
+   Definitions
+      At line 18 in file Q1.asm
+   Uses
+      At line 11 in file Q1.asm
+Comment: RESULT used once
+VALUE1 00000024
+
+Symbol: VALUE1
+   Definitions
+      At line 16 in file Q1.asm
+   Uses
+      At line 6 in file Q1.asm
+Comment: VALUE1 used once
+VALUE2 00000028
+
+Symbol: VALUE2
+   Definitions
+      At line 17 in file Q1.asm
+   Uses
+      None
+Comment: VALUE2 unused
+5 symbols
+339 symbols in table

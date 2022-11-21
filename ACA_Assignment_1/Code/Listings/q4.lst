@@ -1,0 +1,101 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000         ;Find the square root of a number present in 0x40000000.
+                       Store the result back in 0x40000030 
+    2 00000000                 AREA             SQUARENUM, CODE, READONLY
+    3 00000000                 ENTRY
+    4 00000000         MAIN
+    5 00000000 E3A01101        LDR              R1,=0X40000000 ;LOAD ADDRESS
+    6 00000004 E5911000        LDR              R1,[R1]     ;LOAD DATA FROM ADD
+                                                            RESS
+    7 00000008 E3A02001        LDR              R2,=1       ; FINDS THE NEAREST
+                                                             SQUARE TO THE GIVE
+                                                            N NUMBER
+    8 0000000C E0030292 
+                       SQRT    MUL              R3,R2,R2    ;BEGINS WITH 1,4,9.
+                                                            ..
+    9 00000010 E1530001        CMP              R3,R1       ; COMPARES GIVEN NU
+                                                            MBER WITH ITS SQUAR
+                                                            E
+   10 00000014 0A000003        BEQ              STORE       ; IF EQUAL STORES T
+                                                            HE VALUE IN DESTINA
+                                                            TION ADDRESS
+   11 00000018 CA000001        BGT              DONE        ; IF GREATER , DECR
+                                                            EMENTS VALUE OF R2 
+                                                            AND STORES IN DESTI
+                                                            NATION ADDRESS
+   12 0000001C E2822001        ADD              R2,#1
+   13 00000020 EAFFFFF9        B                SQRT        ; BRANCH TO SQRT
+   14 00000024         DONE
+   15 00000024 E2422001        SUB              R2,#1
+   16 00000028         STORE
+   17 00000028 E3A041C1        LDR              R4,=0X40000030 ; R4 HOLDS THE D
+                                                            ESTINATION ADDRESS
+   18 0000002C E5842000        STR              R2,[R4]
+   19 00000030 EAFFFFFE 
+                       STOP    B                STOP        ; INFINITE LOOP
+   20 00000034                 END                          ;END OF EXECUTION
+Command Line: --debug --xref --diag_suppress=9931 --apcs=interwork --depend=.\o
+bjects\q4.d -o.\objects\q4.o -IC:\Keil_v5\ARM\RV31\INC -IC:\Keil_v5\ARM\CMSIS\I
+nclude -IC:\Keil_v5\ARM\INC\Philips --predefine="__EVAL SETA 1" --predefine="__
+UVISION_VERSION SETA 529" --list=.\listings\q4.lst Q4.asm
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+DONE 00000024
+
+Symbol: DONE
+   Definitions
+      At line 14 in file Q4.asm
+   Uses
+      At line 11 in file Q4.asm
+Comment: DONE used once
+MAIN 00000000
+
+Symbol: MAIN
+   Definitions
+      At line 4 in file Q4.asm
+   Uses
+      None
+Comment: MAIN unused
+SQRT 0000000C
+
+Symbol: SQRT
+   Definitions
+      At line 8 in file Q4.asm
+   Uses
+      At line 13 in file Q4.asm
+Comment: SQRT used once
+SQUARENUM 00000000
+
+Symbol: SQUARENUM
+   Definitions
+      At line 2 in file Q4.asm
+   Uses
+      None
+Comment: SQUARENUM unused
+STOP 00000030
+
+Symbol: STOP
+   Definitions
+      At line 19 in file Q4.asm
+   Uses
+      At line 19 in file Q4.asm
+Comment: STOP used once
+STORE 00000028
+
+Symbol: STORE
+   Definitions
+      At line 16 in file Q4.asm
+   Uses
+      At line 10 in file Q4.asm
+Comment: STORE used once
+6 symbols
+338 symbols in table

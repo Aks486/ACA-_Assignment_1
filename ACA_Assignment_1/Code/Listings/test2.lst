@@ -1,0 +1,102 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000                 AREA             MYCODE, CODE, READONLY
+    2 00000000                 ENTRY
+    3 00000000         
+    4 00000000         START
+    5 00000000 E3A0500A        MOV              R5,#10
+    6 00000004 E59F0050        LDR              R0,= Array  ;load start address
+                                                            
+    7 00000008 E59F1050        LDR              R1,= ArrayEnd
+    8 0000000C E5916000        LDR              R6,[R1]
+    9 00000010 E5902000        LDR              R2,[R0]
+   10 00000014         LOOP
+   11 00000014 E5B03004        LDR              R3,[R0,#4]!
+   12 00000018 E0824003        ADD              R4,R2,R3
+   13 0000001C E5864000        STR              R4,[R6]
+   14 00000020 E2455001        ADD              R5,R5,#-1
+   15 00000024 E3550000        CMP              R5,#0
+   16 00000028 1AFFFFF9        BNE              LOOP
+   17 0000002C EAFFFFFE 
+                       STOP    B                STOP
+   18 00000030 00000001 
+              00000002 
+              00000003 
+              00000004 
+              00000005 
+              00000006 
+              00000007 
+              00000008 
+              00000009 
+              0000000A Array   DCD              0x1,0x2,0x3,0x4,0x5,0x6,0x7,0x8
+,0x9,0xA
+   19 00000058 40000008 
+                       ArrayEnd
+                               DCD              0X40000008
+   20 0000005C                 END
+              00000000 
+              00000000 
+Command Line: --debug --xref --diag_suppress=9931 --apcs=interwork --depend=.\o
+bjects\test2.d -o.\objects\test2.o -IC:\Keil_v5\ARM\RV31\INC -IC:\Keil_v5\ARM\C
+MSIS\Include -IC:\Keil_v5\ARM\INC\Philips --predefine="__EVAL SETA 1" --predefi
+ne="__UVISION_VERSION SETA 529" --list=.\listings\test2.lst test2.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+Array 00000030
+
+Symbol: Array
+   Definitions
+      At line 18 in file test2.s
+   Uses
+      At line 6 in file test2.s
+Comment: Array used once
+ArrayEnd 00000058
+
+Symbol: ArrayEnd
+   Definitions
+      At line 19 in file test2.s
+   Uses
+      At line 7 in file test2.s
+Comment: ArrayEnd used once
+LOOP 00000014
+
+Symbol: LOOP
+   Definitions
+      At line 10 in file test2.s
+   Uses
+      At line 16 in file test2.s
+Comment: LOOP used once
+MYCODE 00000000
+
+Symbol: MYCODE
+   Definitions
+      At line 1 in file test2.s
+   Uses
+      None
+Comment: MYCODE unused
+START 00000000
+
+Symbol: START
+   Definitions
+      At line 4 in file test2.s
+   Uses
+      None
+Comment: START unused
+STOP 0000002C
+
+Symbol: STOP
+   Definitions
+      At line 17 in file test2.s
+   Uses
+      At line 17 in file test2.s
+Comment: STOP used once
+6 symbols
+340 symbols in table

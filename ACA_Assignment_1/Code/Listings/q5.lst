@@ -1,0 +1,92 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000         ;Consider an array of 5 32-numbers present from location
+                        0x4000 0000. Find the sum of these numbers and store ba
+                       ck in 0x4000 1000.
+    2 00000000                 AREA             ARRAYOFNUM, CODE, READONLY
+    3 00000000                 ENTRY
+    4 00000000         
+    5 00000000         MAIN
+    6 00000000 E3A01101        LDR              R1,=0X40000000 ; LOAD THE ADDRE
+                                                            SS VALUE TO R1
+    7 00000004 E3A03005        LDR              R3,=5       ; ;HOLDS THE SIZE O
+                                                            F THE ARRAY
+    8 00000008 E5915000        LDR              R5,[R1]     ;LOAD CONTENTS OF R
+                                                            1 TO R5
+    9 0000000C E3530000 
+                       SUM     CMP              R3,#0       ;CHECK IF SIZE EQUA
+                                                            LS 0
+   10 00000010 0A000003        BEQ              DONE        ;IF EQUAL BRANCH TO
+                                                             DONE 
+   11 00000014 E0822005        ADD              R2,R2,R5    ;ADD CONTENTS OF R5
+                                                             AND R2 AND STORE I
+                                                            N R2
+   12 00000018 E2433001        SUB              R3,#1       ;DECREMENT THE COUN
+                                                            T
+   13 0000001C E5B15004        LDR              R5,[R1,#4]! ; PRE-INDEX INCREME
+                                                            NT 
+   14 00000020 EAFFFFF9        B                SUM         ;GO TO SUM 
+   15 00000024         DONE
+   16 00000024 E59F4004        LDR              R4,=0X40001000 
+                                                            ;LOAD THE ADDRESS
+   17 00000028 E5842000        STR              R2,[R4]     ;STORE THE RESULT
+   18 0000002C EAFFFFFE 
+                       STOP    B                STOP        ;INFINITE LOOP
+   19 00000030                 END                          ;END OF EXCECUTION
+              40001000 
+Command Line: --debug --xref --diag_suppress=9931 --apcs=interwork --depend=.\o
+bjects\q5.d -o.\objects\q5.o -IC:\Keil_v5\ARM\RV31\INC -IC:\Keil_v5\ARM\CMSIS\I
+nclude -IC:\Keil_v5\ARM\INC\Philips --predefine="__EVAL SETA 1" --predefine="__
+UVISION_VERSION SETA 529" --list=.\listings\q5.lst Q5.asm
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+ARRAYOFNUM 00000000
+
+Symbol: ARRAYOFNUM
+   Definitions
+      At line 2 in file Q5.asm
+   Uses
+      None
+Comment: ARRAYOFNUM unused
+DONE 00000024
+
+Symbol: DONE
+   Definitions
+      At line 15 in file Q5.asm
+   Uses
+      At line 10 in file Q5.asm
+Comment: DONE used once
+MAIN 00000000
+
+Symbol: MAIN
+   Definitions
+      At line 5 in file Q5.asm
+   Uses
+      None
+Comment: MAIN unused
+STOP 0000002C
+
+Symbol: STOP
+   Definitions
+      At line 18 in file Q5.asm
+   Uses
+      At line 18 in file Q5.asm
+Comment: STOP used once
+SUM 0000000C
+
+Symbol: SUM
+   Definitions
+      At line 9 in file Q5.asm
+   Uses
+      At line 14 in file Q5.asm
+Comment: SUM used once
+5 symbols
+339 symbols in table

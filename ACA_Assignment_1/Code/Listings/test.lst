@@ -1,0 +1,83 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000                 AREA             EX13,CODE, READONLY
+    2 00000000                 ENTRY
+    3 00000000         START
+    4 00000000 E3A00101        LDR              R0,=0X40000000 ; R0=0x40000000
+    5 00000004 E59F5030        LDR              R5,=TABLE   ; R5=20
+    6 00000008 E5805000        STR              R5,[R0]     ; 0x40000000=20
+    7 0000000C E5901000        LDR              R1,[R0]     ; R1=20
+    8 00000010 E2800004        ADD              R0,R0,#4    ; R0=R0+4=0x4000000
+                                                            4
+    9 00000014 E5805000        STR              R5,[R0]     ; 0x40000004=30
+   10 00000018 E5902000        LDR              R2,[R0]     ; R2=Content of 0x4
+                                                            0000004=30
+   11 0000001C E0813002        ADD              R3,R1,R2    ; R3=20+30=50
+   12 00000020 E59F4018        LDR              R4,=RESULT  ; R4=0x4000001C
+   13 00000024 E5946000        LDR              R6,[R4]
+   14 00000028 E5863000        STR              R3,[R6]     ; 0x4000001C=50
+   15 0000002C EAFFFFFE 
+                       STOP    B                STOP
+   16 00000030 00000020 
+              00000030 TABLE   DCD              &20,&30
+   17 00000038 4000001C 
+                       RESULT  DCD              0X4000001C
+   18 0000003C                 END
+              00000000 
+              00000000 
+Command Line: --debug --xref --diag_suppress=9931 --apcs=interwork --depend=.\o
+bjects\test.d -o.\objects\test.o -IC:\Keil_v5\ARM\RV31\INC -IC:\Keil_v5\ARM\CMS
+IS\Include -IC:\Keil_v5\ARM\INC\Philips --predefine="__EVAL SETA 1" --predefine
+="__UVISION_VERSION SETA 529" --list=.\listings\test.lst test.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+EX13 00000000
+
+Symbol: EX13
+   Definitions
+      At line 1 in file test.s
+   Uses
+      None
+Comment: EX13 unused
+RESULT 00000038
+
+Symbol: RESULT
+   Definitions
+      At line 17 in file test.s
+   Uses
+      At line 12 in file test.s
+Comment: RESULT used once
+START 00000000
+
+Symbol: START
+   Definitions
+      At line 3 in file test.s
+   Uses
+      None
+Comment: START unused
+STOP 0000002C
+
+Symbol: STOP
+   Definitions
+      At line 15 in file test.s
+   Uses
+      At line 15 in file test.s
+Comment: STOP used once
+TABLE 00000030
+
+Symbol: TABLE
+   Definitions
+      At line 16 in file test.s
+   Uses
+      At line 5 in file test.s
+Comment: TABLE used once
+5 symbols
+339 symbols in table

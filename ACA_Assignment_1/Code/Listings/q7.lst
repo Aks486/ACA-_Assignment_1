@@ -1,0 +1,120 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000         ;Find the length of the string character.
+    2 00000000 0000000D 
+                       CR      EQU              0x0D        ;DEFINE CONSTANTS
+    3 00000000         
+    4 00000000                 AREA             LENOFSTRING, CODE, READONLY
+    5 00000000                 ENTRY
+    6 00000000         
+    7 00000000         MAIN
+    8 00000000 E28F001C        ADR              R0, STRING  ;LOAD THE ADDRESS O
+                                                            F THE LOOKUP TABLE
+    9 00000004 E0211001        EOR              R1, R1, R1  ;CLEAR R1 TO STORE 
+                                                            THE COUNT
+   10 00000008         LOOP
+   11 00000008 E4D02001        LDRB             R2, [R0], #1 ;LOAD THE FIRST BY
+                                                            TE TO R2
+   12 0000000C E352000D        CMP              R2, #CR     ;IS IT THE TERMINAT
+                                                            OR?
+   13 00000010 0A000001        BEQ              DONE        ;IF NOT ,THEN CONTI
+                                                            NUE LOOP
+   14 00000014 E2811001        ADD              R1, R1, #1  ;INCREMENT COUNT
+   15 00000018 EAFFFFFA        B                LOOP
+   16 0000001C         DONE
+   17 0000001C E58F1010        STR              R1,CHARCOUNT ;OTHERWISE DONE - 
+                                                            STORE RESULT
+   18 00000020 E1A00000        NOP
+   19 00000024         
+   20 00000024 48 65 6C 
+              6C 6F 2C 
+              20 57 6F 
+              72 6C 64 
+              0D       STRING  DCB              "Hello, World", CR ;ENTER THE S
+                                                            TRING TO EVALUTE LE
+                                                            NGTH
+   21 00000031 00 00 00        ALIGN
+   22 00000034 00      CHARCOUNT
+                               DCB              0           ;STORAGE FOR COUNT
+   23 00000035 00 00 00        ALIGN
+   24 00000038                 END
+Command Line: --debug --xref --diag_suppress=9931 --apcs=interwork --depend=.\o
+bjects\q7.d -o.\objects\q7.o -IC:\Keil_v5\ARM\RV31\INC -IC:\Keil_v5\ARM\CMSIS\I
+nclude -IC:\Keil_v5\ARM\INC\Philips --predefine="__EVAL SETA 1" --predefine="__
+UVISION_VERSION SETA 529" --list=.\listings\q7.lst Q7.asm
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+CHARCOUNT 00000034
+
+Symbol: CHARCOUNT
+   Definitions
+      At line 22 in file Q7.asm
+   Uses
+      At line 17 in file Q7.asm
+Comment: CHARCOUNT used once
+DONE 0000001C
+
+Symbol: DONE
+   Definitions
+      At line 16 in file Q7.asm
+   Uses
+      At line 13 in file Q7.asm
+Comment: DONE used once
+LENOFSTRING 00000000
+
+Symbol: LENOFSTRING
+   Definitions
+      At line 4 in file Q7.asm
+   Uses
+      None
+Comment: LENOFSTRING unused
+LOOP 00000008
+
+Symbol: LOOP
+   Definitions
+      At line 10 in file Q7.asm
+   Uses
+      At line 15 in file Q7.asm
+Comment: LOOP used once
+MAIN 00000000
+
+Symbol: MAIN
+   Definitions
+      At line 7 in file Q7.asm
+   Uses
+      None
+Comment: MAIN unused
+STRING 00000024
+
+Symbol: STRING
+   Definitions
+      At line 20 in file Q7.asm
+   Uses
+      At line 8 in file Q7.asm
+Comment: STRING used once
+6 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Absolute symbols
+
+CR 0000000D
+
+Symbol: CR
+   Definitions
+      At line 2 in file Q7.asm
+   Uses
+      At line 12 in file Q7.asm
+      At line 20 in file Q7.asm
+
+1 symbol
+339 symbols in table

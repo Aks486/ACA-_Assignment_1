@@ -1,0 +1,116 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000         ;Consider a 32-bit number present in 0x40000000.Find the
+                        number of ones and zero present in the 32-bit number.St
+                       ore the result in 0x40000004 and 0x40000008
+    2 00000000                 AREA             ZEROANDONES, CODE, READONLY
+    3 00000000                 ENTRY
+    4 00000000         MAIN
+    5 00000000 E3A01101        LDR              R1,=0X40000000 ;LOAD THE ADDRES
+                                                            S LOCATION
+    6 00000004 E5911000        LDR              R1,[R1]     ;LOAD THE 32-BIT NU
+                                                            MBER TO THE REGISTE
+                                                            R R1
+    7 00000008 E3A00001        MOV              R0,#1       ;INCREMENT R0 BY 1
+    8 0000000C E3A05000        MOV              R5,#0       ;LOOP INDEX
+    9 00000010         CHECK
+   10 00000010 E3550020        CMP              R5,#32      ;
+   11 00000014 0A000009        BEQ              DONE        ;BRANCH TO DONE IF 
+                                                            EQUAL
+   12 00000018 E0112000        ANDS             R2,R1,R0    ;AND R1 WITH R0 WIT
+                                                            H CARRY AND STORE R
+                                                            ESULT IN R2 
+   13 0000001C 1A000003        BNE              ONE         ;BRANCH TO ONE IF N
+                                                            OT EQUAL
+   14 00000020 E2877001        ADD              R7,#1       ; ADD 1 TO R7
+   15 00000024 E2855001        ADD              R5,#1       ;INCREMENT THE LOOP
+                                                             INDEX
+   16 00000028 E1A00080        MOV              R0,R0,LSL #1 ;LOGICAL LEFT-SHIF
+                                                            T CONTENTS IN R0 BY
+                                                             1-BIT
+   17 0000002C EAFFFFF7        B                CHECK       ;RUN THE LOOP AGAIN
+                                                             
+   18 00000030 E2866001 
+                       ONE     ADD              R6,#1       ;INCREMENT R6 BY 1
+   19 00000034 E2855001        ADD              R5,#1       ;INCREMENT R5 BY 1
+   20 00000038 E1A00080        MOV              R0,R0,LSL #1 ;LOGICAL LEFT-SHIF
+                                                            T CONTENTS IN R0 AN
+                                                            D MOVE IT BACK TO R
+                                                            0
+   21 0000003C EAFFFFF3        B                CHECK
+   22 00000040         
+   23 00000040         DONE
+   24 00000040 E3A08111        LDR              R8,=0X40000004 
+                                                            ;LOAD THE ADDRESS
+   25 00000044 E5886000        STR              R6,[R8]     ;STORE THE RESULT
+   26 00000048 E3A08121        LDR              R8,=0X40000008 
+                                                            ;LOAD THE ADDRESS
+   27 0000004C E5887000        STR              R7,[R8]     ;STORE THE RESULT
+   28 00000050 EAFFFFFE 
+                       STOP    B                STOP
+   29 00000054                 END
+Command Line: --debug --xref --diag_suppress=9931 --apcs=interwork --depend=.\o
+bjects\q6.d -o.\objects\q6.o -IC:\Keil_v5\ARM\RV31\INC -IC:\Keil_v5\ARM\CMSIS\I
+nclude -IC:\Keil_v5\ARM\INC\Philips --predefine="__EVAL SETA 1" --predefine="__
+UVISION_VERSION SETA 529" --list=.\listings\q6.lst Q6.asm
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+CHECK 00000010
+
+Symbol: CHECK
+   Definitions
+      At line 9 in file Q6.asm
+   Uses
+      At line 17 in file Q6.asm
+      At line 21 in file Q6.asm
+
+DONE 00000040
+
+Symbol: DONE
+   Definitions
+      At line 23 in file Q6.asm
+   Uses
+      At line 11 in file Q6.asm
+Comment: DONE used once
+MAIN 00000000
+
+Symbol: MAIN
+   Definitions
+      At line 4 in file Q6.asm
+   Uses
+      None
+Comment: MAIN unused
+ONE 00000030
+
+Symbol: ONE
+   Definitions
+      At line 18 in file Q6.asm
+   Uses
+      At line 13 in file Q6.asm
+Comment: ONE used once
+STOP 00000050
+
+Symbol: STOP
+   Definitions
+      At line 28 in file Q6.asm
+   Uses
+      At line 28 in file Q6.asm
+Comment: STOP used once
+ZEROANDONES 00000000
+
+Symbol: ZEROANDONES
+   Definitions
+      At line 2 in file Q6.asm
+   Uses
+      None
+Comment: ZEROANDONES unused
+6 symbols
+338 symbols in table

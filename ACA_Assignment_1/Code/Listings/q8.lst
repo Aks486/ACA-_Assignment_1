@@ -1,0 +1,85 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000         ;Find whether the 32-bit number is negative or a positiv
+                       e number
+    2 00000000                 AREA             POSORNEGNUM,CODE,READONLY
+    3 00000000                 ENTRY
+    4 00000000         
+    5 00000000         MAIN
+    6 00000000 E59F0014        LDR              R0,VALUE    ;ASSIGN THE 32-BIT 
+                                                            SIGNED NUMBER
+    7 00000004 E3A01001        LDR              R1,=1
+    8 00000008 E0100F81        ANDS             R0,R1,LSL #31 ;CHECK THE 32ND B
+                                                            IT FOR THE SIGN
+    9 0000000C 1A000001        BNE              NEGATIVE    ;IF 32ND BIT IS NON
+                                                            -ZERO THEN ITS NEGA
+                                                            TIVE
+   10 00000010 E3E02000        LDR              R2,=0XFFFFFFFF ;IF ITS POSITIVE
+                                                             SET R2(FLAG) TO 1
+   11 00000014 EA000001        B                STOP
+   12 00000018         NEGATIVE
+   13 00000018 E3A02000        LDR              R2,=0       ;IF ITS NEGATIVE SE
+                                                            T R2(FLAG) TO 0
+   14 0000001C FB2A4E6E 
+                       VALUE   DCD              -81113490   ;VALUE TO CHECK POS
+                                                            ITIVE OR NEGATIVE
+   15 00000020 EAFFFFFE 
+                       STOP    B                STOP
+   16 00000024                 END
+Command Line: --debug --xref --diag_suppress=9931 --apcs=interwork --depend=.\o
+bjects\q8.d -o.\objects\q8.o -IC:\Keil_v5\ARM\RV31\INC -IC:\Keil_v5\ARM\CMSIS\I
+nclude -IC:\Keil_v5\ARM\INC\Philips --predefine="__EVAL SETA 1" --predefine="__
+UVISION_VERSION SETA 529" --list=.\listings\q8.lst Q8.asm
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+MAIN 00000000
+
+Symbol: MAIN
+   Definitions
+      At line 5 in file Q8.asm
+   Uses
+      None
+Comment: MAIN unused
+NEGATIVE 00000018
+
+Symbol: NEGATIVE
+   Definitions
+      At line 12 in file Q8.asm
+   Uses
+      At line 9 in file Q8.asm
+Comment: NEGATIVE used once
+POSORNEGNUM 00000000
+
+Symbol: POSORNEGNUM
+   Definitions
+      At line 2 in file Q8.asm
+   Uses
+      None
+Comment: POSORNEGNUM unused
+STOP 00000020
+
+Symbol: STOP
+   Definitions
+      At line 15 in file Q8.asm
+   Uses
+      At line 11 in file Q8.asm
+      At line 15 in file Q8.asm
+
+VALUE 0000001C
+
+Symbol: VALUE
+   Definitions
+      At line 14 in file Q8.asm
+   Uses
+      At line 6 in file Q8.asm
+Comment: VALUE used once
+5 symbols
+337 symbols in table

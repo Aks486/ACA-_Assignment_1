@@ -1,0 +1,92 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000         ;Using subroutine, find the factorial of a number. 
+    2 00000000                 AREA             FACTORIALSUB, CODE, READONLY
+    3 00000000                 ENTRY
+    4 00000000         MAIN
+    5 00000000 E59F0028        LDR              R0,NUM      ; LOAD THE NUMBER
+    6 00000004 E3A03001        LDR              R3,=1       ;LOAD THE REGISTER 
+                                                            VALUE OF R3 TO 1
+    7 00000008 EB000001        BL               FACT        ;CALL SUB-ROUTINE T
+                                                            O CALCULATE THE FAC
+                                                            TORIAL 
+    8 0000000C E3A04101        LDR              R4,=0X40000000 
+                                                            ;LOAD THE ADDRESS
+    9 00000010 E5843000        STR              R3,[R4]     ;STORE RESULT IN ME
+                                                            MORY
+   10 00000014         
+   11 00000014         FACT
+   12 00000014 E3500001        CMP              R0,#1       ;CHECK IF THE NUMBE
+                                                            R IS EQUAL TO 1
+   13 00000018 012FFF1E        BXEQ             LR          ;RETURN TO INSTRUCT
+                                                            ION STORED IN LINK 
+                                                            REGISTER
+   14 0000001C E0050093        MUL              R5,R3,R0    ;MULTIPLY
+   15 00000020 E1A03005        MOV              R3,R5       ;MOVE CONTENTS
+   16 00000024 E2400001        SUB              R0,#1       ;DRCREMENT THE NUMB
+                                                            ER
+   17 00000028 EAFFFFF9        B                FACT        ;ITERATIVE PROCESS
+   18 0000002C EAFFFFFE 
+                       STOP    B                STOP        ;INFINITE LOOP
+   19 00000030 00000005 
+                       NUM     DCD              5           ;ENTER THE NUMBER T
+                                                            O FIND ITS FACTORIA
+                                                            L 
+   20 00000034                 END                          ;END OF EXECUTION
+Command Line: --debug --xref --diag_suppress=9931 --apcs=interwork --depend=.\o
+bjects\q10.d -o.\objects\q10.o -IC:\Keil_v5\ARM\RV31\INC -IC:\Keil_v5\ARM\CMSIS
+\Include -IC:\Keil_v5\ARM\INC\Philips --predefine="__EVAL SETA 1" --predefine="
+__UVISION_VERSION SETA 529" --list=.\listings\q10.lst Q10.asm
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+FACT 00000014
+
+Symbol: FACT
+   Definitions
+      At line 11 in file Q10.asm
+   Uses
+      At line 7 in file Q10.asm
+      At line 17 in file Q10.asm
+
+FACTORIALSUB 00000000
+
+Symbol: FACTORIALSUB
+   Definitions
+      At line 2 in file Q10.asm
+   Uses
+      None
+Comment: FACTORIALSUB unused
+MAIN 00000000
+
+Symbol: MAIN
+   Definitions
+      At line 4 in file Q10.asm
+   Uses
+      None
+Comment: MAIN unused
+NUM 00000030
+
+Symbol: NUM
+   Definitions
+      At line 19 in file Q10.asm
+   Uses
+      At line 5 in file Q10.asm
+Comment: NUM used once
+STOP 0000002C
+
+Symbol: STOP
+   Definitions
+      At line 18 in file Q10.asm
+   Uses
+      At line 18 in file Q10.asm
+Comment: STOP used once
+5 symbols
+337 symbols in table
